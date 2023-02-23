@@ -22,28 +22,23 @@ engineer.getEmployee()
   })
   .then(() => {
     everyone.push(manager);
+
+    employee = new Employee();
+    return employee.getEmployee();
   })
+  .then(() => {
+    everyone.push(employee);
+    everyone.push(employee);
+  })
+  .catch(error => {
+    console.error(err);
+  })
+  .finally(() => {
+    console.log('You can view the employee data here http://localhost:3000/');
+    app.get('/', (req, res) => {
+      res.render('employees', {everyone: everyone});
+    });
 
-  
+    app.listen(3000);
+  });
 
-
-
-
-
-/*function Developer(name, tech) {
-    this.name = name;
-    this.tech = tech;
-    this.introduction = () => {
-      console.log(`Hi, my name is ${this.name} and I love ${this.tech}!`);
-    };
-  }
-
-  const rita = new Developer('Rita', 'JavaScript');
-
-  const person = {
-    name: 'Eric',
-    age: 28,
-    occupation: 'Full-Stack Web Developer',
-  };
-  
-  console.log(person.occupation.toLowerCase());*/
