@@ -8,7 +8,7 @@ class Employee {
     }
 
     askName() {
-        return inquirer.createPromptModule({
+        return inquirer.prompt({
             type: 'input',
             name: 'name',
             message: 'What is your name?',
@@ -30,7 +30,20 @@ class Employee {
                 }
                 return 'Please enter a valid email';
             }
-        })
+        }).then(answer => {
+            this.email = answer.email;
+        }).catch(error => {
+            console.error(error);
+        });
     }
 
+    getEmployee() {
+        if (this.name === '' && this.email === '') {
+            return this.askName()
+            .then(() => this.askEmail())
+            .catch(error => console.error(error));
+        }
+    }
 }
+
+module.exports = Employee

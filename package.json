@@ -1,7 +1,6 @@
 {
   "name": "team_infogenerator",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "npm start",
@@ -16,5 +15,17 @@
     "inquirer": "^8.2.4",
     "jest": "^29.4.3",
     "pug": "^3.0.2"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ablobos/oop_teamgenerator_ohyeah.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ablobos/oop_teamgenerator_ohyeah/issues"
+  },
+  "homepage": "https://github.com/ablobos/oop_teamgenerator_ohyeah#readme",
+  "description": ""
 }
