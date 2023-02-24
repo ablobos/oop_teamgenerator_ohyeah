@@ -12,7 +12,8 @@ app.set('views', './views');
 let engineer = new Engineer();
 let manager = null
 let employee = null
-engineer.getEmployee()
+
+  engineer.getEmployee()
   .then(() => {
     everyone.push(engineer);
     everyone.push(engineer);

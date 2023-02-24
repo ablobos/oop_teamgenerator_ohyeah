@@ -8,11 +8,37 @@ html
         import { renderFile } from 'pug';
 doctype html
 html
-
-  body
-    table
-      thead
-        tr
+ head 
+   body
+     title My Team 
+     style.
+       body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+       }
+       .header {
+        background-color: red;
+        margin: 0 0 2rem;
+        height: 4rem;
+        display: flex;
+       }
+       .headerText {
+        margin: auto;
+        color: #fffff;
+        font-size: 24px;
+        font-weight: 700;
+       }
+       .employeeArea {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr); 
+       }
+       .employeeData {
+        border: 2px outset;
+       }
+         tr
           each header in headers
             th= header
       tbody
@@ -21,7 +47,7 @@ html
               td= field.id
               td= field.name
               td= field.price
-              
+
 const names = ['John Doe', 'Roger Roe', 'Paul Smith', 'Rebecca Jordan'];
 const res = renderFile('template.pug', { 'names': names });
 
