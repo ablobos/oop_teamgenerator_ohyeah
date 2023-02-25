@@ -12,7 +12,7 @@ class Manager extends Employee {
         return inquirer.prompt({
             type: 'input',
             name: 'office_number',
-            message: 'What is your office number?',
+            message: 'Manager: What is your office number?',
             validate(value) {
                 const pass = value.match(/^[0-9]*[1-9][0-9]*$/);
                 if(pass) {

@@ -1,9 +1,8 @@
-//https://youtu.be/kt3cEjjkCZA great tutorial for pug(formally known as Jade)
+//- https://youtu.be/kt3cEjjkCZA great tutorial for pug(formally known as Jade)
 doctype html
 html
  head 
-   body
-     title My Team 
+     title The Team 
      style.
        body {
         padding: 0;
@@ -58,7 +57,7 @@ html
        }
 body 
     div.header 
-        p.headerText= 'My Team'
+        p.headerText= 'The Team'
     div.employeeArea 
         for employee in everyone 
             div.employeeData
@@ -69,5 +68,5 @@ body
                     p Email:   #{employee.email}
                     if (employee.github) 
                         p GitHub: #{employee.email} 
-                        if (employee.office_number)
+                    if (employee.office_number)
                         p Office: #{employee.office_number} 

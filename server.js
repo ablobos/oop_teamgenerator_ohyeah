@@ -32,7 +32,7 @@ let employee = null
     everyone.push(employee);
   })
   .catch(error => {
-    console.error(err);
+    console.error(error);
   })
   .finally(() => {
     console.log('You can view the employee data here http://localhost:3000/');
