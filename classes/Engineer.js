@@ -8,7 +8,7 @@ class Engineer extends Employee {
         this.role = 'Engineer';
     }
 
-    askGithub() {
+    askGitHub() {
         return inquirer.prompt({
             type: 'input',
             name: 'github',
@@ -23,7 +23,7 @@ class Engineer extends Employee {
         if (this.name === '' && this.email === '' && this.github === '') {
             return this.askName()
             .then(() => this.askEmail())
-            .then(() => this.askGithub())
+            .then(() => this.askGitHub())
             .catch(error => console.error(error));   
         }
     }

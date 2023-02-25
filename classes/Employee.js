@@ -11,10 +11,11 @@ class Employee {
         return inquirer.prompt({
             type: 'input',
             name: 'name',
-            message: 'Employee: What is your name?',
+            message: 'What is your name?',
         }).then(answer => {
             this.name = answer.name;
-        }).catch(err => {
+        }).catch(error => {
+            console.error(error);
         });
     }
 

@@ -1,7 +1,7 @@
 //- https://youtu.be/kt3cEjjkCZA great tutorial for pug(formally known as Jade)
 doctype html
 html
- head 
+  head 
      title The Team 
      style.
        body {
@@ -18,7 +18,7 @@ html
        }
        .headerText {
         margin: auto;
-        color: #fffff;
+        color: #ffffff;
         font-size: 24px;
         font-weight: 700;
        }
@@ -26,6 +26,9 @@ html
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr); 
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        margin: auto;
        }
        .employeeData {
         border: 2px outset;
@@ -44,7 +47,7 @@ html
         margin-bottom: 5px;
        }
        .employeeRole {
-        color: #ffffff'
+        color: #ffffff;
         font-size: 18px;
         margin: 0;
        }
@@ -67,6 +70,6 @@ body
                 div.employeeOtherDetails  
                     p Email:   #{employee.email}
                     if (employee.github) 
-                        p GitHub: #{employee.email} 
+                        p GitHub: #{employee.github} 
                     if (employee.office_number)
                         p Office: #{employee.office_number} 

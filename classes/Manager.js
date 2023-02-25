@@ -18,7 +18,7 @@ class Manager extends Employee {
                 if(pass) {
                     return true;
                 }
-                return '{Please enter a valid number';
+                return 'Please enter a valid number';
                 }
         }).then(answer => {
             this.office_number = answer.office_number;
