@@ -5,7 +5,7 @@ test('function should create an employee object', async () => {
     const spy = jest.spyOn(inquirer, 'prompt')
     spy.mockImplementation(() => Promise.resolve({
         name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com'
+        email: 'ablobos@outlook.com',
     }));
 
 const employee = new Employee()
@@ -36,7 +36,7 @@ test('function should update email property of employee', async () => {
 
     const employee = new Employee()
     await employee.askEmail()
-    expect(employee.email).toBe('ablobos@outlook.com')
+    expect(employee.email).toBe('ablobos@outlook.com');
     expect(employee.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
 
     spy.mockRestore();
@@ -46,7 +46,7 @@ test('function should validate email property', async () => {
     const spy = jest.spyOn(inquirer, 'prompt')
     spy.mockImplementation(() => Promise.resolve({
         email: 'ablobos@outlook.com',
-    }))
+    }));
     const employee = new Employee()
     await employee.askEmail()
     expect(employee.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
@@ -57,7 +57,7 @@ test('function should validate email property', async () => {
 test('function should validate email property', async () => {
     const spy = jest.spyOn(inquirer, 'prompt')
     spy.mockImplementation(() => Promise.resolve({
-        email: 'ablobos@outlook.com'
+        email: 'ablobosoutlook.com',
     }));
     const employee = new Employee()
         await employee.askEmail()
