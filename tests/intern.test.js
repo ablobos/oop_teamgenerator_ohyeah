@@ -25,7 +25,7 @@ test('function should validate email property', async () => {
 
     const intern = new Intern()
     await intern.askInternNumber()
-    expect(engineer.intern_number).toBe(9)
+    expect(intern.intern_number).toBe(9)
 
     spy.mockRestore();
 })

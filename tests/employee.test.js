@@ -5,7 +5,7 @@ test('function should create an employee object', async () => {
     const spy = jest.spyOn(inquirer, 'prompt')
     spy.mockImplementation(() => Promise.resolve({
         name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com',
+        email: 'ablobos@outlook.com'
     }));
 
 const employee = new Employee()

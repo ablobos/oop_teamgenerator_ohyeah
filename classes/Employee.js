@@ -29,7 +29,7 @@ class Employee {
                 if (pass) {
                     return true;
                 }
-                return 'Please enter a valid email';
+                return 'Please enter a valid email!';
             }
         }).then(answer => {
             this.email = answer.email;

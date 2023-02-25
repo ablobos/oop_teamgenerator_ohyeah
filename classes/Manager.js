@@ -4,7 +4,7 @@ const Employee = require('./Employee.js')
 class Manager extends Employee {
     constructor() {
         super();
-        this.office_number = 'null';
+        this.office_number = null;
         this.role = 'Manager';
     }
 
