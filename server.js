@@ -1,5 +1,6 @@
 const express = require('express')
 const Employee = require('./classes/Employee')
+const Intern = require('./classes/Intern')
 const Manager = require('./classes/Manager')
 const Engineer = require('./classes/Engineer')
 
@@ -12,11 +13,18 @@ app.set('views', './views');
 let engineer = new Engineer();
 let manager = null
 let employee = null
+let intern = null
 
   engineer.getEmployee()
   .then(() => {
     everyone.push(engineer);
     everyone.push(engineer);
+
+    intern = new Intern();
+    return intern.getEmployee();
+  })
+  .then(() => {
+    everyone.push(intern);
 
     manager = new Manager();
     return manager.getEmployee();

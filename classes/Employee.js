@@ -6,7 +6,7 @@ class Employee {
         this.email = '';
         this.role = 'Employee';
     }
-
+//prompt questions
     askName() {
         return inquirer.prompt({
             type: 'input',
@@ -20,7 +20,7 @@ class Employee {
     }
 
     askEmail() {
-        return inquirer.prompt( {
+        return inquirer.prompt({
             type: 'input',
             name: 'email',
             message: 'What is your email?',
