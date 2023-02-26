@@ -18,13 +18,6 @@ let intern = null
   engineer.getEmployee()
   .then(() => {
     everyone.push(engineer);
-    everyone.push(engineer);
-
-    intern = new Intern();
-    return intern.getEmployee();
-  })
-  .then(() => {
-    everyone.push(intern);
 
     manager = new Manager();
     return manager.getEmployee();
@@ -37,7 +30,12 @@ let intern = null
   })
   .then(() => {
     everyone.push(employee);
-    everyone.push(employee);
+
+    intern = new Intern();
+    return intern.getEmployee();
+  })
+  .then(() => {
+    everyone.push(intern);
   })
   .catch(error => {
     console.error(error);
