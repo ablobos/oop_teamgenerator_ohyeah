@@ -11,7 +11,7 @@ class Employee {
         return inquirer.prompt({
             type: 'input',
             name: 'name',
-            message: 'What is your name?',
+            message: 'What is your name (add a "," followed by your job title)?',
         }).then(answer => {
             this.name = answer.name;
         }).catch(error => {

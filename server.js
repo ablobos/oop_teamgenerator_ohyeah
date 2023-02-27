@@ -11,17 +11,31 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 let engineer = new Engineer();
-let manager = new Manager();
-let employee = new Employee();
-let intern = new Intern();
+let manager = null
+let employee = null
+let intern = null
 
-engineer.getEmployee()
-  .then(() => manager.askOffice())
-  .then(() => manager.getEmployee())
-  .then(() => employee.getEmployee())
-  .then(() => intern.getEmployee())
+  engineer.getEmployee()
   .then(() => {
-    everyone.push(engineer, manager, employee, intern);
+    everyone.push(engineer);
+
+    manager = new Manager();
+    return manager.getEmployee();
+  })
+  .then(() => {
+    everyone.push(manager);
+
+    employee = new Employee();
+    return employee.getEmployee();
+  })
+  .then(() => {
+    everyone.push(employee);
+
+    intern = new Intern();
+    return intern.getEmployee();
+  })
+  .then(() => {
+    everyone.push(intern);
   })
   .catch(error => {
     console.error(error);

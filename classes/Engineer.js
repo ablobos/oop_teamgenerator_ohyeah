@@ -12,7 +12,7 @@ class Engineer extends Employee {
         return inquirer.prompt({
             type: 'input',
             name: 'github',
-            message: 'What is your Github name?',
+            message: 'Engineer: What is your Github name?',
         }).then(answer => {
             this.github = answer.github;
         }).catch(error => {
