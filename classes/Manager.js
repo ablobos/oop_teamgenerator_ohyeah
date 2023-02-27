@@ -27,7 +27,7 @@ class Manager extends Employee {
         });
     }
     getEmployee() {
-        if (this.name === '' && this.email === '' && this.github === '') {
+        if (this.name === '' && this.email === '' && this.office_number === '') {
             return this.askName()
             .then(() => this.askEmail())
             .then(() => this.askOffice())
