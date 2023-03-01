@@ -8,32 +8,18 @@ class Manager extends Employee {
         this.role = 'Manager';
     }
 
-    askOffice() {
-        return inquirer.prompt({
-            type: 'input',
-            name: 'office_number',
-            message: 'Manager: What is your office number?',
-            validate(value) {
-                const pass = value.match(/^[0-9]*[1-9][0-9]*$/);
-                if(pass) {
-                    return true;
-                }
-                return 'Please enter a valid number';
-                }
-        }).then(answer => {
-            this.office_number = answer.office_number;
-        }).catch(error => {
-            console.error(error);
-        });
-    }
-    getEmployee() {
-        if (this.name === '' && this.email === '' && this.office_number === '') {
-            return this.askName()
-            .then(() => this.askEmail())
-            .then(() => this.askOffice())
-            .catch(error => console.error(error));   
-        }
-    }
+    get OfficeNumber() {
+        return this._office_number
+     }
+     set officeNumber(value) {
+        this._office_number = value
+     }
+     setEmployee(name, id, email, officeNumber) {
+        this._name = name
+        this._id = id
+        this._email = email
+        this._office_number = officeNumber
+     }
 }
 
 module.exports = Manager

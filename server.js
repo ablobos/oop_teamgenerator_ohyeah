@@ -1,11 +1,11 @@
 const express = require('express')
 const Employee = require('./classes/Employee')
-const Intern = require('./classes/Intern')
 const Manager = require('./classes/Manager')
 const Engineer = require('./classes/Engineer')
+const Intern = require('./classes/Intern')
 
 const app = express();
-const everyone =[];
+const everyone = [];
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -14,8 +14,7 @@ let engineer = new Engineer();
 let manager = null
 let employee = null
 let intern = null
-
-  engineer.getEmployee()
+engineer.getEmployee()
   .then(() => {
     everyone.push(engineer);
 
