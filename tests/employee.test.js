@@ -1,67 +1,48 @@
-const inquirer = require('inquirer');
-const Employee = require('../classes/Employee.js')
+const Employee = require('../lib/Employee.js')
 
-test('function should create an employee object', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com',
-    }));
+DESCRIBE('Employee class', () => {
+    let employee;
 
-const employee = new Employee()
-await employee.getEmployee()
-expect(employee).toBeInstanceOf(Employee);
+    beforeEach(() => {
+        employee = new Employee();
+});
 
-spy.mockRestore();
-})
+test('should initialize with null id, empty name, email, and "Employee" role', () => {
+    expect(employee.id).toBeNull();
+    expect(employee.name).toBe('');
+    expect(employee.email).toBe('');
+    expect(employee.role).toBe('Employee');
+    });
 
-test('function should update name property of employee', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        name: 'A.B. Lobos',
-    }));
+test('should set name using setter', () => {
+    employee.id = 123;
+    expect(employee.id).toBe(123);
+});
 
-    const employee = new Employee()
-    await employee.askName()
-    expect(employee.name).toBe('A.B. Lobos');
+test('should set name using setter', () => {
+    employee.name = 'John Doe';
+    expect(employee.name).toBe('John Doe');
+});
 
-    spy.mockRestore();
-})
+test('should set email using setter', () => {
+    employee.email = 'jdoe@example.com';
+    expect(employee.email).toBe('jdoe@example.com');
+});
 
-test('function should update email property of employee', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        email: 'ablobos@outlook.com',
-    }));
+test('should not set role using setter', () => {
+    employee.role = 'Manager';
+    expect(employee.role).toBe('Employee');
+});
 
-    const employee = new Employee()
-    await employee.askEmail()
-    expect(employee.email).toBe('ablobos@outlook.com');
-    expect(employee.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+test('should return correct values from getters', () => {
+    employee.id = 123;
+    employee.name = 'John Doe';
+    employee.email = 'jdoe@example.com';
 
-    spy.mockRestore();
-})
+    expect(employee.id).toBe(123);
+    expect(employee.name).toBe('John Doe');
+    expect(employee.id).toBe('jdoe@example.com');
+    expect(employee.name).toBe('Employee');
+  });
 
-test('function should validate email property', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        email: 'ablobos@outlook.com',
-    }));
-    const employee = new Employee()
-    await employee.askEmail()
-    expect(employee.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-
-    spy.mockRestore();
-})
-
-test('function should validate email property', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        email: 'ablobosoutlook.com',
-    }));
-    const employee = new Employee()
-        await employee.askEmail()
-        expect(employee.email).not.toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-    
-        spy.mockRestore();
-})
+});
