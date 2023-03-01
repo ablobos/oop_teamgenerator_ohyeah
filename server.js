@@ -1,8 +1,11 @@
-const express = require('express')
-const Employee = require('./classes/Employee')
-const Manager = require('./classes/Manager')
-const Engineer = require('./classes/Engineer')
-const Intern = require('./classes/Intern')
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const pug = require('pug');
+const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const app = express();
 const everyone = [];
@@ -11,39 +14,111 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 let engineer = new Engineer();
-let manager = null
-let employee = null
-let intern = null
-engineer.getEmployee()
-  .then(() => {
-    everyone.push(engineer);
+let manager = null;
+let intern = null;
 
-    manager = new Manager();
-    return manager.getEmployee();
-  })
-  .then(() => {
-    everyone.push(manager);
+const promptManagerDetails = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter the manager\'s name:',
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Enter the manager\'s ID:',
+    },
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: 'Enter the manager\'s email address;',
+    },
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: 'Enter the manager\'s office number:',
+    },
+   ]);
+};
 
-    employee = new Employee();
-    return employee.getEmployee();
-  })
-  .then(() => {
-    everyone.push(employee);
+const promptAddEmployee = () => {
+  return inquirer.prompt([
+    {
+      type: 'list',
+      name: 'role',
+      message: 'Choose the employee\'s role:',
+      choices: ['Engineer', 'Intern'],
+    },
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter the employee\'s name:',
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Enter the employee\'s ID:',
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Enter the employee\'s email address:',
+    },
+    {
+      type: 'input',
+      name: 'github',
+      message: 'Enter the employee\'s GitHub username:',
+      when: (answers) => answers.role === 'Intern',
+    },
+    {
+      type: 'confirm',
+      name: 'addAnother',
+      message: 'Would you like to add another employee?',
+      default: false,
+      },
+    ]);
+};
 
-    intern = new Intern();
-    return intern.getEmployee();
-  })
-  .then(() => {
-    everyone.push(intern);
-  })
-  .catch(error => {
-    console.error(error);
-  })
-  .finally(() => {
-    console.log('You can view the employee data here http://localhost:3000/');
-    app.get('/', (req, res) => {
-      res.render('employees', {everyone: everyone});
-    });
+  const startApp = async () => {
+    try {
+      manager = new Manager();
+      const managerDetails = await promptManagerDetails();
+      await manager.setEmployee(managerDetails.name,
+      managerDetails.id, managerDetails.email,
+      managerDetails.officeNumber);
+      everyone.push(manager);
+
+      while (true) {
+        const { role, name, id, email, github, school, addAnother } = await promptAddEmployee();
+
+        if (role === 'Engineer') {
+          engineer = new Engineer();
+          await engineer.setEmployee(name, id, email, github);
+          everyone.push(engineer);
+        } else {
+          intern = new Intern();
+          await intern.setEmployee(name, id, email, school);
+          everyone.push(intern);
+        }
+        if (!addAnother) {
+          break;
+          }
+        }
+        const templatePath = path.join(__dirname, 'views', 'employees.pug');
+        const outputPath = path.join(__dirname, 'dist', 'index.html');
+        const compiledFunction = pug.compileFile(templatePath);
+        const html = compiledFunction({ everyone: everyone });
+        const distPath = path.join(__dirname, 'dist');
+        if (!fs.existsSync(distPath)) {
+          fs.mkdirSync(distPath);
+        }
+        fs.writeFileSync(outputPath, html);
+        console.log(`HTML file generated at ${outputPath}`);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
 
     app.listen(3000);
-  });
