@@ -4,7 +4,7 @@ const Manager = require('../lib/Manager')
     let manager;
 
     beforeEach(() => {
-        intern = new Manager();
+      manager = new Manager();
 });
 
 describe('constructor', () => {
@@ -21,7 +21,7 @@ describe('constructor', () => {
 describe('officeNumber', () => {
     it('should set the officeNumber property when the setter is called', () => {
         const officeNumber = 123;
-        intern.officeNumber = officeNumber;
+        manager.officeNumber = officeNumber;
         expect(manager.officeNumber).toBe(officeNumber);
     });
 
@@ -38,7 +38,7 @@ describe('officeNumber', () => {
             const id = 1;
             const email = 'johndoe@example.com';
             const officeNumber = 123;
-            engineer.setEmployee(name, id, email, officeNumber);
+            manager.setEmployee(name, id, email, officeNumber);
             expect(manager.name).toBe(name);
             expect(manager.id).toBe(id);
             expect(manager.email).toBe(email);

@@ -1,6 +1,6 @@
-const Employee = require('../lib/Employee.js')
+const Employee = require('./lib/Employee.js')
 
-DESCRIBE('Employee class', () => {
+describe('Employee class', () => {
     let employee;
 
     beforeEach(() => {
@@ -41,8 +41,8 @@ test('should return correct values from getters', () => {
 
     expect(employee.id).toBe(123);
     expect(employee.name).toBe('John Doe');
-    expect(employee.id).toBe('jdoe@example.com');
-    expect(employee.name).toBe('Employee');
+    expect(employee.email).toBe('jdoe@example.com');
+    expect(employee.role).toBe('Employee');
   });
 
 });
