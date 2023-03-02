@@ -1,90 +1,107 @@
 //- https://youtu.be/kt3cEjjkCZA great tutorial for pug(formally known as Jade)
+
 doctype html
 html
-  head 
-     title The Team 
-     style.
-       body {
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-       }
-       .header {
-        background-color: red;
-        margin: 0 0 2rem;
-        height: 4rem;
-        display: flex;
-       }
-       .headerText {
-        margin: auto;
-        color: #ffffff;
-        font-size: 24px;
-        font-weight: 700;
-       }
-       .employeeArea {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr); 
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        margin: auto;
-       }
-       .employeeData {
-        border: 2px outset;
-        display: flex;
-        flex-direction: column;
-        background-color: #f5f5f5;
-        width: 20vw;
-       }
-       .employeeHeader {
-        background-color: #4169E1;
-        padding: 0 1rem;
-       }
-       .employeeName {
-        color: #ffffff;
-        font-size: 20px;
-        margin: 0;
-        margin-bottom: 5px;
-       }
-       .employeeRole {
-        color: #ffffff;
-        font-size: 18px;
-        margin: 0;
-       }
-       .employeeOtherDetails {
-        display: flex;
-        flex-direction: column;
-        background-color: #ffffff;
-        margin: auto;
-        padding: 0;
-        width: 70%;
-        font-size: 14px;
-       }
-       .empDetails {
-        display: flex;
-        flex-direction: row;
-        padding: 3px;
-       }
-       p,a {
-        margin: auto;
-       }
-       hr {
-        border: 0.5px solid gray;
-        width: 80%;
-       }
-body 
-    div.header 
-        p.headerText= 'The Team'
-    div.employeeArea 
-        for employee in everyone 
+   head
+      title My Team
+      style.
+         body {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+         }
+         .header {
+            background-color: red;
+            margin: 0 0 2rem;
+            height: 4rem;
+            display: flex;
+         }
+         .headerText {
+            margin: auto;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+         }
+         .employeeArea {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            margin: auto;
+         }
+         .employeeData {
+            border: 2px outset;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+            width: 20vw;
+         }
+         .employeeHeader {
+            background-color: #4169E1;
+            padding: 0 1rem;
+         }
+         .employeeName {
+            color: #ffffff;
+            font-size: 20px;
+            margin: 0;
+            margin-bottom: 5px;
+         }
+         .employeeRole {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 0;
+         }
+         .employeeOtherDetails {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            margin: auto;
+            padding: 0;
+            width: 70%;
+            font-size: 14px;
+         }
+         .empDetails {
+            display: flex;
+            flex-direction: row;
+            padding: 3px;
+         }
+         p, a {
+            margin: auto;
+         }
+         hr {
+            border: 0.5px solid gray;
+            width: 80%;
+         }
+
+   body
+      div.header 
+         p.headerText= 'My Team'
+      div.employeeArea
+         for employee in everyone 
             div.employeeData
-                div.employeeHeader 
-                    p.employeeName= employee.name 
-                    p.employeeRole= employee.role 
-                div.employeeOtherDetails  
-                    p Email:   #{employee.email}
-                    if (employee.github) 
-                        p GitHub: #{employee.github} 
-                    if (employee.office_number)
-                        p Office: #{employee.office_number} 
+               div.employeeHeader
+                  p.employeeName= employee._name
+                  p.employeeRole= employee._role 
+               div.employeeOtherDetails
+                  div.empDetails
+                     p ID: 
+                     p #{employee._id}
+                  hr
+                  div.empDetails
+                     p Email: 
+                     a(href=`mailto:${employee._email}`) #{employee._email}
+                  hr
+                  if (employee._github)
+                     div.empDetails
+                        p GitHub: 
+                        a(href=`https://github.com/${employee._github}`) #{employee._github}
+                  if (employee._office_number)
+                     div.empDetails
+                        p Office Number:
+                        p #{employee._office_number}
+                  if (employee._intern_school)
+                     div.empDetails
+                        p School
+                        p #{employee._intern_school}
