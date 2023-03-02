@@ -1,4 +1,4 @@
-const Engineer = require('./lib/Intern')
+const Intern = require('../lib/Intern')
 
     describe('Intern', () => {
     let intern;
@@ -25,7 +25,7 @@ describe('school', () => {
     });
 
     it('should get the gitHub property when the getter is called', () => {
-        const gitHub = 'johndoe123';
+        const school = 'Columbia University';
         intern.school = school;
         expect(intern.school).toBe(school);
     });

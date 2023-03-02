@@ -1,4 +1,4 @@
-const Engineer = require('./lib/Engineer.js')
+const Engineer = require('../lib/Engineer')
 
     describe('Engineer', () => {
     let engineer;
@@ -11,7 +11,7 @@ describe('constructor', () => {
     it('should create a new Engineer instance with default values', () => {
     expect(engineer).toBeDefined();
     expect(engineer.name).toBe('');
-    expect(engineer.id).toBeNull('');
+    expect(engineer.id).toBeNull();
     expect(engineer.email).toBe('');
     expect(engineer.gitHub).toBe('');
     });
