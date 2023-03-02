@@ -1,30 +1,47 @@
-const inquirer = require('inquirer');
-const Engineer = require('../classes/Engineer.js')
+const Engineer = require('../lib/Engineer.js')
 
-test('function should return expected output', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com',
-        github: 'abloboshub'
-    }));
+    describe('Engineer', () => {
+    let engineer;
 
-    const engineer = new Engineer()
-    await engineer.getEmployee()
-    expect(engineer).toBeInstanceOf(Engineer);
+    beforeEach(() => {
+        engineer = new Engineer();
+});
 
-    spy.mockRestore();
-})
+describe('constructor', () => {
+    it('should create a new Engineer instance with default values', () => {
+    expect(engineer).toBeDefined();
+    expect(engineer.name).toBe('');
+    expect(engineer.id).toBeNull('');
+    expect(engineer.email).toBe('');
+    expect(engineer.gitHub).toBe('');
+    });
+});
 
-test('function should validate email property', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        github: 'ablobosgithub',
-    }));
+describe('gitHub', () => {
+    it('should set the gitHub property when the setter is called', () => {
+        const gitHub = 'johndoe123';
+        engineer.gitHub = gitHub;
+        expect(engineer.gitHub).toBe(gitHub);
+    });
 
-    const engineer = new Engineer()
-    await engineer.askGitHub()
-    expect(engineer.github).toBe('ablobosgithub')
+    it('should get the gitHub property when the getter is called', () => {
+        const gitHub = 'johndoe123';
+        engineer.gitHub = gitHub;
+        expect(engineer.gitHub).toBe(gitHub);
+    });
+});
 
-    spy.mockRestore();
-})
+    describe('setEmployee', () => {
+        it('should set the name, id, email, and gitHub properties', () => {
+            const name = 'John Doe';
+            const id = 1;
+            const email = 'johndoe@example.com';
+            const gitHub = 'johndoe123';
+            engineer.setEmployee(name, id, email, gitHub);
+            expect(engineer.name).toBe(name);
+            expect(engineer.id).toBe(id);
+            expect(engineer.email).toBe(email);
+            expect(engineer.gitHub).toBe(gitHub);
+        });
+    });
+});

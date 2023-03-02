@@ -1,31 +1,47 @@
-const inquirer = require('inquirer');
-const Intern = require('../classes/Intern.js')
+const Engineer = require('../lib/Intern')
 
-test('function should create an intern object', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com',
-        intern_number: 10
-    }));
+    describe('Intern', () => {
+    let intern;
 
-    const intern = new Intern()
-    await intern.getEmployee()
-    expect(intern).toBeInstanceOf(Intern);
+    beforeEach(() => {
+        intern = new Intern();
+});
 
-    spy.mockRestore();
-}
-)
+describe('constructor', () => {
+    it('should create a new Intern instance with default values', () => {
+    expect(intern).toBeDefined();
+    expect(intern.name).toBe('');
+    expect(intern.id).toBeNull();
+    expect(intern.email).toBe('');
+    expect(intern.school).toBe('');
+    });
+});
 
-test('function should validate email property', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        intern_number: 9,
-    }));
+describe('school', () => {
+    it('should set the school property when the setter is called', () => {
+        const school = 'Columbia University';
+        intern.school = school;
+        expect(intern.school).toBe(school);
+    });
 
-    const intern = new Intern()
-    await intern.askInternNumber()
-    expect(intern.intern_number).toBe(9)
+    it('should get the gitHub property when the getter is called', () => {
+        const gitHub = 'johndoe123';
+        intern.school = school;
+        expect(intern.school).toBe(school);
+    });
+    });
 
-    spy.mockRestore();
-})
+    describe('setEmployee', () => {
+        it('should set the name, id, email, and gitHub properties', () => {
+            const name = 'John Doe';
+            const id = 1;
+            const email = 'johndoe@example.com';
+            const school = 'Columbia University';
+            intern.setEmployee(name, id, email, school);
+            expect(intern.name).toBe(name);
+            expect(intern.id).toBe(id);
+            expect(intern.email).toBe(email);
+            expect(intern.school).toBe(school);
+        });
+    });
+});

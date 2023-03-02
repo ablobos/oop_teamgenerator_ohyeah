@@ -1,30 +1,48 @@
-const inquirer = require('inquirer');
-const Manager = require('../classes/Manager.js');
+const Manager = require('../lib/Manager')
 
-test('function should return expected output', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        name: 'A.B. Lobos',
-        email: 'ablobos@outlook.com',
-        office_number: 10
-    }));
+    describe('Manager', () => {
+    let manager;
 
-    const manager = new Manager()
-    await manager.getEmployee()
-    expect(manager).toBeInstanceOf(Manager);
+    beforeEach(() => {
+        intern = new Manager();
+});
 
-    spy.mockRestore();
-})
+describe('constructor', () => {
+    it('should create a new Manager instance with default values', () => {
+    expect(manager).toBeDefined();
+    expect(manager.name).toBe('');
+    expect(manager.id).toBeNull();
+    expect(manager.email).toBe('');
+    expect(manager.officeNumber).toBeNull();
+    expect(manager.role).toBe('Manager');
+    });
+});
 
-test('function should update office number property', async () => {
-    const spy = jest.spyOn(inquirer, 'prompt')
-    spy.mockImplementation(() => Promise.resolve({
-        office_number: 9,
-    }));
+describe('officeNumber', () => {
+    it('should set the officeNumber property when the setter is called', () => {
+        const officeNumber = 123;
+        intern.officeNumber = officeNumber;
+        expect(manager.officeNumber).toBe(officeNumber);
+    });
 
-    const manager = new Manager()
-    await manager.askOffice()
-    expect(manager.office_number).toBe(9)
+    it('should get the officeNumber property when the getter is called', () => {
+        const officeNumber = 123;
+        manager.officeNumber = officeNumber;
+        expect(manager.officeNumber).toBe(officeNumber);
+    });
+    });
 
-    spy.mockRestore();
-})
+    describe('setEmployee', () => {
+        it('should set the name, id, email, and gitHub properties', () => {
+            const name = 'John Doe';
+            const id = 1;
+            const email = 'johndoe@example.com';
+            const officeNumber = 123;
+            engineer.setEmployee(name, id, email, officeNumber);
+            expect(manager.name).toBe(name);
+            expect(manager.id).toBe(id);
+            expect(manager.email).toBe(email);
+            expect(manager.officeNumber).toBe(officeNumber);
+        });
+    });
+});
