@@ -17,6 +17,7 @@ let manager = null;
 let intern = null;
 let engineer = null;
 
+//questions
 const promptManagerDetails = () => {
   return inquirer.prompt([
     {
@@ -109,7 +110,7 @@ const startApp = async () => {
       if (!addAnother) {
         break;
       }
-    }
+    } //creating html
     const templatePath = path.join(__dirname, 'views', 'employees.pug');
     const outputPath = path.join(__dirname, 'dist', 'index.html');
     const compiledFunction = pug.compileFile(templatePath);
